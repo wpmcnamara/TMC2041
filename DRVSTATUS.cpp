@@ -1,6 +1,8 @@
 #include "TMCStepper.h"
 #include "TMC_MACROS.h"
 
+constexpr uint8_t DRV_STATUS_t::address[];
+
 // DRV_STATUS
 uint32_t TMC2041Stepper::DRV_STATUS(uint8_t motor) {  return read(DRV_STATUS_register.address[motor]); }
 

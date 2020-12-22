@@ -7,9 +7,9 @@ uint32_t TMC2041Stepper::spi_speed = 16000000/8;
 /*
 void TMC2041Stepper::push(uimt8_t motor) {
 	GCONF(GCONF_register.sr);
-	IHOLD_IRUN(IHOLD_IRUN_register.sr);
-	CHOPCONF(CHOPCONF_register.sr);
-  COOLCONF(COOLCONF_register.sr);
+	IHOLD_IRUN(0, IHOLD_IRUN_register.sr);
+	CHOPCONF(0, CHOPCONF_register.sr);
+  COOLCONF(0, COOLCONF_register.sr);
 }*/
 
 

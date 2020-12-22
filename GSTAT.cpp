@@ -1,7 +1,6 @@
 #include "TMCStepper.h"
 #include "TMC_MACROS.h"
 
-
 // GSTAT
 uint32_t TMC2041Stepper::GSTAT() {
 	return read(GSTAT_register.address);

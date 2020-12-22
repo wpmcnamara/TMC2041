@@ -1,4 +1,4 @@
-//#pragma once
+#pragma once
 #pragma pack(push, 1)
 
 struct GCONF_t {
@@ -87,6 +87,8 @@ struct CHOPCONF_t {
         };
     };
 };
+
+
 
 struct COOLCONF_t {
     constexpr static uint8_t address[2] = {0x6D,0x7D};

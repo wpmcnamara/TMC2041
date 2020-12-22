@@ -1,6 +1,8 @@
 #include "TMCStepper.h"
 #include "TMC_MACROS.h"
 
+constexpr uint8_t COOLCONF_t::address[];
+
 #define SET_REG(SETTING) COOLCONF_register.SETTING = B; write(COOLCONF_register.address[M], COOLCONF_register.sr);
 
 // COOLCONF

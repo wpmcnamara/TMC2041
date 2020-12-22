@@ -165,6 +165,9 @@ class TMC2041Stepper : public TMCStepper {
 
 		// W: IHOLD_IRUN
 		void IHOLD_IRUN(uint8_t motor, uint32_t input);
+		uint8_t ihold(uint8_t motor);
+		uint8_t irun(uint8_t motor);
+		uint8_t iholddelay(uint8_t motor);
 		void 	ihold(uint8_t motor, uint8_t B);
 		void 	irun(uint8_t motor,	uint8_t B);
 		void 	iholddelay(	uint8_t motor, uint8_t B);
