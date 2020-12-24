@@ -1,36 +1,42 @@
 #include "TMCStepper.h"
 #include "TMC_MACROS.h"
 
-
-#define SET_REG(SETTING) GCONF_register.SETTING = B; write(GCONF_register.address, GCONF_register.sr)
-
-
+constexpr uint8_t GCONF_reg_set::address[];
 
 // GCONF
-uint32_t TMC2041Stepper::GCONF() {
-	return read(GCONF_register.address);
-}
-void TMC2041Stepper::GCONF(uint32_t input) {
-	GCONF_register.sr = input;
-	write(GCONF_register.address, GCONF_register.sr);
-}
+SET_REG_GROUP(TMC2041Stepper, GCONF)
+GET_REG_GROUP(TMC2041Stepper, GCONF)
+
+SET_REG(TMC2041Stepper, GCONF, bool, single_driver)
+SET_REG(TMC2041Stepper, GCONF, bool, stepdir1_en)
+SET_REG(TMC2041Stepper, GCONF, bool, stepdir2_en)
+SET_REG(TMC2041Stepper, GCONF, bool, test_mode)
+SET_REG(TMC2041Stepper, GCONF, bool, shaft1_rev)
+SET_REG(TMC2041Stepper, GCONF, bool, shaft2_rev)
+SET_REG(TMC2041Stepper, GCONF, bool, lock_gconf)
+
+GET_REG(TMC2041Stepper, GCONF, bool, single_driver)
+GET_REG(TMC2041Stepper, GCONF, bool, stepdir1_en)
+GET_REG(TMC2041Stepper, GCONF, bool, stepdir2_en)
+GET_REG(TMC2041Stepper, GCONF, bool, test_mode)
+GET_REG(TMC2041Stepper, GCONF, bool, shaft1_rev)
+GET_REG(TMC2041Stepper, GCONF, bool, shaft2_rev)
+GET_REG(TMC2041Stepper, GCONF, bool, lock_gconf)
 
 
+inline void TMC2041Stepper::single_driver(bool v) 	{ single_driver(0, v);	}
+inline void TMC2041Stepper::stepdir1_en(bool v) 	{ stepdir1_en(0, v); 	}
+inline void TMC2041Stepper::stepdir2_en(bool v) 	{ stepdir2_en(0, v); 	}
+inline void TMC2041Stepper::test_mode(bool v) 		{ test_mode(0, v);		}
+inline void TMC2041Stepper::shaft1_rev(bool v) 		{ shaft1_rev(0, v);		}
+inline void TMC2041Stepper::shaft2_rev(bool v)	 	{ shaft2_rev(0, v);		}
+inline void TMC2041Stepper::lock_gconf(bool v)	 	{ lock_gconf(0, v);		}
 
-void TMC2041Stepper::single_driver(bool B) { SET_REG(single_driver);};
-void TMC2041Stepper::stepdir1_en(bool B) { SET_REG(stepdir1_en);};
-void TMC2041Stepper::stepdir2_en(bool B) { SET_REG(stepdir2_en);};
-void TMC2041Stepper::test_mode(bool B) { SET_REG(test_mode);};
-void TMC2041Stepper::shaft1_rev(bool B) { SET_REG(shaft1_rev);};
-void TMC2041Stepper::shaft2_rev(bool B) { SET_REG(shaft2_rev);};
-void TMC2041Stepper::lock_gconf(bool B) { SET_REG(lock_gconf);};
-
-
-bool TMC2041Stepper::single_driver() { GCONF_t r{0}; r.sr = GCONF(); return r.single_driver;		}
-bool TMC2041Stepper::stepdir1_en() { GCONF_t r{0}; r.sr = GCONF(); return r.stepdir1_en;		}
-bool TMC2041Stepper::stepdir2_en() { GCONF_t r{0}; r.sr = GCONF(); return r.stepdir2_en;		}
-bool TMC2041Stepper::test_mode() { GCONF_t r{0}; r.sr = GCONF(); return r.test_mode;		}
-bool TMC2041Stepper::shaft1_rev() { GCONF_t r{0}; r.sr = GCONF(); return r.shaft1_rev;		}
-bool TMC2041Stepper::shaft2_rev() { GCONF_t r{0}; r.sr = GCONF(); return r.shaft2_rev;		}
-bool TMC2041Stepper::lock_gconf() { GCONF_t r{0}; r.sr = GCONF(); return r.lock_gconf;		}
+inline bool TMC2041Stepper::single_driver()		{ return single_driver(0); 	}
+inline bool TMC2041Stepper::stepdir1_en() 		{ return stepdir1_en(0); 	}
+inline bool TMC2041Stepper::stepdir2_en() 		{ return stepdir2_en(0); 	}
+inline bool TMC2041Stepper::test_mode() 		{ return test_mode(0); 		}
+inline bool TMC2041Stepper::shaft1_rev() 		{ return shaft1_rev(0); 	}
+inline bool TMC2041Stepper::shaft2_rev() 		{ return shaft2_rev(0); 	}
+inline bool TMC2041Stepper::lock_gconf() 		{ return lock_gconf(0); 	}
 

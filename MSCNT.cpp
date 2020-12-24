@@ -2,8 +2,8 @@
 #include "TMCStepper.h"
 #include "TMC_MACROS.h"
 
-constexpr uint8_t MSCNT_t::address[];
+constexpr uint8_t MSCNT_reg_set::address[];
 
-uint16_t TMC2041Stepper::MSCNT(uint8_t motor) {
-  return read(MSCNT_register.address[motor]);
-}
+GET_REG_GROUP(TMC2041Stepper, MSCNT)
+
+GET_REG(TMC2041Stepper, MSCNT, uint16_t, mscnt)

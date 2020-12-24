@@ -1,21 +1,24 @@
 #include "TMCStepper.h"
 #include "TMC_MACROS.h"
 
-constexpr uint8_t COOLCONF_t::address[];
+constexpr uint8_t COOLCONF_reg_set::address[];
 
-#define SET_REG(SETTING) COOLCONF_register.SETTING = B; write(COOLCONF_register.address[M], COOLCONF_register.sr);
+SET_REG_GROUP(TMC2041Stepper, COOLCONF)
+GET_SHADOW_REG_GROUP(TMC2041Stepper, COOLCONF)
 
-// COOLCONF
-uint32_t TMC2041Stepper::COOLCONF(uint8_t motor) {  return read(COOLCONF_register.address[motor]); }
-void TMC2041Stepper::COOLCONF(uint8_t motor, uint32_t input) {
-	COOLCONF_register.sr = input;
-	write(COOLCONF_register.address[motor], COOLCONF_register.sr);
-}
 
-void TMC2041Stepper::semin(		uint8_t M, uint8_t B )	{ SET_REG(semin);	}
-void TMC2041Stepper::seup(		uint8_t M, uint8_t B )	{ SET_REG(seup);	}
-void TMC2041Stepper::semax(		uint8_t M, uint8_t B )	{ SET_REG(semax);	}
-void TMC2041Stepper::sedn(		uint8_t M, uint8_t B )	{ SET_REG(sedn);		}
-void TMC2041Stepper::seimin(	uint8_t M, bool 	B )	{ SET_REG(seimin);	}
-void TMC2041Stepper::sgt(		uint8_t M, int8_t 	B )	{ SET_REG(sgt);	}
-void TMC2041Stepper::sfilt(		uint8_t M, bool 	B )	{ SET_REG(sfilt);		}
+SET_REG(TMC2041Stepper, COOLCONF, uint8_t, semin)
+SET_REG(TMC2041Stepper, COOLCONF, uint8_t, seup)
+SET_REG(TMC2041Stepper, COOLCONF, uint8_t, semax)
+SET_REG(TMC2041Stepper, COOLCONF, uint8_t, sedn)
+SET_REG(TMC2041Stepper, COOLCONF, bool, seimin)
+SET_REG(TMC2041Stepper, COOLCONF, uint8_t, sgt)
+SET_REG(TMC2041Stepper, COOLCONF, bool, sfilt)
+
+GET_SHADOW_REG(TMC2041Stepper, COOLCONF, uint8_t, semin)
+GET_SHADOW_REG(TMC2041Stepper, COOLCONF, uint8_t, seup)
+GET_SHADOW_REG(TMC2041Stepper, COOLCONF, uint8_t, semax)
+GET_SHADOW_REG(TMC2041Stepper, COOLCONF, uint8_t, sedn)
+GET_SHADOW_REG(TMC2041Stepper, COOLCONF, bool, seimin)
+GET_SHADOW_REG(TMC2041Stepper, COOLCONF, uint8_t, sgt)
+GET_SHADOW_REG(TMC2041Stepper, COOLCONF, bool, sfilt)

@@ -16,9 +16,9 @@
 
 #pragma GCC diagnostic pop
 
-#include "TMC2041_bitfields.h"
+#include "TMC2041_registers.h"
 
-#define INIT_REGISTER(REG) REG##_t REG##_register = REG##_t
+//#define INIT_REGISTER(REG) REG##_t REG##_register = REG##_t
 #define SET_ALIAS(TYPE, DRIVER, NEW, ARG, OLD) TYPE (DRIVER::*NEW)(ARG) = &DRIVER::OLD
 
 #define TMCSTEPPER_VERSION 0x000701 // v0.7.1
@@ -74,16 +74,16 @@ class TMCStepper {
 		virtual bool vsense(uint8_t) = 0;
 		virtual uint32_t MSCURACT(uint8_t motor);
 
-		INIT_REGISTER(GCONF){{.sr=0}};		// 32b
-		INIT_REGISTER(GSTAT){{.sr=0}};
-		INIT_REGISTER(SLAVECONF){{.sr=0}};		// 32b
-		INIT_REGISTER(IOOUT){{.sr=0}};		// 32b
-		INIT_REGISTER(CHOPCONF){{.sr=0}};	// 32b
-		INIT_REGISTER(COOLCONF){{.sr=0}};	// 32b
-		INIT_REGISTER(DRV_STATUS){{.sr=0}};		// 32b
-		INIT_REGISTER(IHOLD_IRUN){{.sr=0}};	// 32b
-		INIT_REGISTER(MSCNT){{.sr=0}};
-		INIT_REGISTER(MSCURACT){{.sr=0}};
+		INIT_REGISTER(GCONF);		
+		INIT_REGISTER(GSTAT);
+		INIT_REGISTER(SLAVECONF);		
+		INIT_REGISTER(IOOUT);		
+		INIT_REGISTER_PAIR(CHOPCONF);	
+		INIT_REGISTER_PAIR(COOLCONF);	
+		INIT_REGISTER_PAIR(DRV_STATUS);		
+		INIT_REGISTER_PAIR(IHOLD_IRUN);	
+		INIT_REGISTER_PAIR(MSCNT);
+		INIT_REGISTER_PAIR(MSCURACT);
 
 		const float Rsense;
 		float holdMultiplier = 0.5;
@@ -245,16 +245,19 @@ class TMC2041Stepper : public TMCStepper {
 		void write(uint8_t addressByte, uint32_t config);
 		uint32_t read(uint8_t addressByte);
 
-		INIT_REGISTER(GCONF){{.sr=0}};		// 32b
-		INIT_REGISTER(GSTAT){{.sr=0}};
-		INIT_REGISTER(SLAVECONF){{.sr=0}};		// 32b
-		INIT_REGISTER(IOOUT){{.sr=0}};		// 32b
-		INIT_REGISTER(CHOPCONF){{.sr=0}};	// 32b
-		INIT_REGISTER(COOLCONF){{.sr=0}};	// 32b
-		INIT_REGISTER(DRV_STATUS){{.sr=0}};		// 32b
-		INIT_REGISTER(IHOLD_IRUN){{.sr=0}};	// 32b
-		INIT_REGISTER(MSCNT){{.sr=0}};
-		INIT_REGISTER(MSCURACT){{.sr=0}};
+		INIT_REGISTER(GCONF);		
+		INIT_REGISTER(GSTAT);
+		INIT_REGISTER(SLAVECONF);		
+		INIT_REGISTER(IOOUT);		
+		INIT_REGISTER_PAIR(CHOPCONF);	
+		INIT_REGISTER_PAIR(COOLCONF);	
+		INIT_REGISTER_PAIR(DRV_STATUS);		
+		INIT_REGISTER_PAIR(IHOLD_IRUN);	
+		INIT_REGISTER_PAIR(MSCNT);
+		INIT_REGISTER_PAIR(MSCURACT);
+
+
+
 
 		static uint32_t spi_speed; // Default 2MHz
 		const uint16_t _pinCS;

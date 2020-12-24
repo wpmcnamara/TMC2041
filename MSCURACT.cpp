@@ -3,6 +3,9 @@
 #include "TMCStepper.h"
 #include "TMC_MACROS.h"
 
-constexpr uint8_t MSCURACT_t::address[];
+constexpr uint8_t MSCURACT_reg_set::address[];
 
-uint32_t TMC2041Stepper::MSCURACT(uint8_t motor) { return read(MSCURACT_register.address[0]); } 
+GET_REG_GROUP(TMC2041Stepper, MSCURACT)
+
+GET_REG(TMC2041Stepper, MSCURACT, uint16_t, cur_b)
+GET_REG(TMC2041Stepper, MSCURACT, uint16_t, cur_a)
