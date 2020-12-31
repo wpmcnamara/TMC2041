@@ -1,0 +1,22 @@
+#include "TMC2041.h"
+
+constexpr uint8_t IOOUT_reg_set::address[];
+
+SET_REG_GROUP(TMC2041, IOOUT)
+GET_SHADOW_REG_GROUP(TMC2041, IOOUT)
+
+SET_REG(TMC2041, IOOUT, bool, io0_out)
+SET_REG(TMC2041, IOOUT, bool, io1_out)
+SET_REG(TMC2041, IOOUT, bool, io2_out)
+SET_REG(TMC2041, IOOUT, bool, ioaddr0)
+SET_REG(TMC2041, IOOUT, bool, ioaddr1)
+SET_REG(TMC2041, IOOUT, bool, ioaddr2)
+
+GET_SHADOW_REG(TMC2041, IOOUT, bool, io0_out)
+GET_SHADOW_REG(TMC2041, IOOUT, bool, io1_out)
+GET_SHADOW_REG(TMC2041, IOOUT, bool, io2_out)
+GET_SHADOW_REG(TMC2041, IOOUT, bool, ioaddr0)
+GET_SHADOW_REG(TMC2041, IOOUT, bool, ioaddr1)
+GET_SHADOW_REG(TMC2041, IOOUT, bool, ioaddr2)
+
+

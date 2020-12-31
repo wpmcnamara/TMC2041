@@ -1,0 +1,11 @@
+#include "TMC2041.h"
+
+constexpr uint8_t SLAVECONF_reg_set::address[];
+
+SET_REG_GROUP(TMC2041, SLAVECONF)
+GET_SHADOW_REG_GROUP(TMC2041, SLAVECONF)
+
+SET_REG(TMC2041, SLAVECONF, uint8_t, slaveaddr)
+SET_REG(TMC2041, SLAVECONF, uint8_t, senddelay)
+GET_SHADOW_REG(TMC2041, SLAVECONF, uint8_t, slaveaddr)
+GET_SHADOW_REG(TMC2041, SLAVECONF, uint8_t, senddelay)

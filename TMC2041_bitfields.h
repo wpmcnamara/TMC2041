@@ -97,9 +97,9 @@ typedef struct IOOUT_bits {
             io1_out : 1,
             io2_out : 1,
                     : 1,
-            ioddr0  : 1,
-            ioddr2  : 1,
-            ioddr3  : 1,
+            ioaddr0  : 1,
+            ioaddr1  : 1,
+            ioaddr2  : 1,
                     : 1;
 } IOOUT_bits_t;
 
